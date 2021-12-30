@@ -1,11 +1,9 @@
 name: Java Build with Maven
 
 on:
-  push:
-    branches: [ master ]
-  pull_request:
-    branches: [ master ]
-
+  schedule:
+    - cron:  '0 3,6,9,12,15,18,21 * * *'
+  workflow_dispatch:
 jobs:
   build:
 
@@ -20,4 +18,4 @@ jobs:
         distribution: 'adopt'
         cache: maven
     - name: Build 
-      run: mvn package -Dmaven.test.skip
+      run: mvn clean install -Dmaven.test.skip
